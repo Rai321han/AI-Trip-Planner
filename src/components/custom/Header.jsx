@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { userContext } from "@/contexts/usercontext";
+import { userContext } from "@/contexts/Usercontext";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoAdd } from "react-icons/io5";
