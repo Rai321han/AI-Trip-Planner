@@ -10,7 +10,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import ViewTrip from "./view-trip/[tripId]/index.jsx";
 
 import Layout from "./components/Layout/Layout.jsx";
-import Usercontext from "./contexts/usercontext.jsx";
+import Usercontext from "./contexts/Usercontext.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 import NotFound from "./components/NotFound.jsx";
 import MyTrips from "./components/MyTrips/MyTrips.jsx";
