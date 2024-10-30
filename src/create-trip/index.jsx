@@ -29,7 +29,7 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 
 import { db } from "@/services/firebaseConfig";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { userContext } from "@/contexts/usercontext";
+import { userContext } from "@/contexts/Usercontext";
 import { getUserProfile } from "@/lib/getUserProfile";
 
 //
