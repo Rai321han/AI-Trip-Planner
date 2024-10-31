@@ -52,19 +52,19 @@ export default function Header() {
             <div className="flex items-center justify-center">
               <Button
                 variant="outline"
-                className="rounded-full text-gray-500"
+                className="btn-full-rounded"
                 onClick={() => navigation("/create-trip")}
               >
                 <IoAdd className="mr-1 w-5 h-5" />
-                Create Trip
+                CREATE TRIPS
               </Button>
             </div>
             <Button
               variant="outline"
-              className="rounded-full text-gray-500"
+              className="btn-full-rounded"
               onClick={() => navigation("/my-trips")}
             >
-              My Trips
+              MY TRIPS
             </Button>
             <Popover>
               <PopoverTrigger className="rounded-full p-2 md:p-3">
@@ -76,6 +76,7 @@ export default function Header() {
               </PopoverTrigger>
               <PopoverContent className="cursor-pointer p-0 w-full">
                 <Button
+                  className="btn"
                   onClick={() => {
                     googleLogout();
                     localStorage.clear();
@@ -83,7 +84,7 @@ export default function Header() {
                     navigation("/");
                   }}
                 >
-                  Log Out
+                  LOG OUT
                 </Button>
                 {/* <h2></h2> */}
               </PopoverContent>

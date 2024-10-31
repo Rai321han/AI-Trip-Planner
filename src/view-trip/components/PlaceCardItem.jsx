@@ -12,7 +12,7 @@ export default function PlaceCardItem({ place }) {
       }
       target="_blank"
     >
-      <div className="min-h-[200px] text-black hover:bg-gray-100  cursor-pointer border rounded-xl p-3 mt-2 flex gap-5 grid-row items-stretch">
+      <div className="min-h-[200px] bg-white text-black hover:scale-105 transition-all cursor-pointer border rounded-xl p-3 shadow-lg mt-2 flex flex-col sm:flex-row gap-5  items-stretch">
         <img
           src="/placeholder.png"
           alt=""

@@ -8,7 +8,7 @@ export default function TripCard({ trip }) {
   const destination = trip.userSelection.location.properties.formatted;
   return (
     <Link to={`/view-trip/${trip.id}`}>
-      <div className="text-black h-full p-4 flex flex-col gap-4 rounded-lg max-w-[250px] hover:bg-gray-50 cursor-pointer bg-white shadow-lg hover:scale-105 transition-all">
+      <div className="text-black h-full p-4 flex flex-col gap-4 rounded-lg max-w-[250px] hover:bg-[#DBFF73] cursor-pointer bg-white shadow-lg hover:scale-105 transition-all">
         <h2 className="font-bold text-[20px] text-gray-700 leading-tight">
           {destination}
         </h2>

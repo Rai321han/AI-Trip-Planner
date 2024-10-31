@@ -76,14 +76,16 @@ export default function ViewTrip() {
   };
   if (isError) return <Navigate to={"/"} />;
   return (
-    <div className="p-10 md:px-20 lg:px-44 xl:px-56">
-      {/* Information Section */}
-      <InfoSection trip={trip} />
+    <div className="px-10 font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20">
+      <div className="max-w-[900px] flex flex-col gap-10">
+        {/* Information Section */}
+        <InfoSection trip={trip} />
 
-      {/* Recommended Hotels */}
-      <Hotels trip={trip} />
-      {/* Daily Plan */}
-      <DailyPlan trip={trip} />
+        {/* Recommended Hotels */}
+        <Hotels trip={trip} />
+        {/* Daily Plan */}
+        <DailyPlan trip={trip} />
+      </div>
     </div>
   );
 }

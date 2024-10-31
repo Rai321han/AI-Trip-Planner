@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { IoIosSend } from "react-icons/io";
 
@@ -20,16 +21,12 @@ export default function InfoSection({ trip }) {
       <div className="flex justify-between items-center">
         <div className="my-5 flex flex-col gap-2">
           <h2 className="font-bold text-2xl">{placeName}</h2>
-          <div className="flex gap-5">
-            <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
+          <div className="flex gap-2 sm:gap-3 flex-wrap">
+            <Badge className="py-1 px-2">
               {noOfDays} {daysPlaceholder}
-            </h2>
-            <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
-              {budget}
-            </h2>
-            <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
-              {noOfTravellers}
-            </h2>
+            </Badge>
+            <Badge className="py-1 px-2">{budget}</Badge>
+            <Badge className="py-1 px-2">{noOfTravellers}</Badge>
           </div>
         </div>
         <Button>

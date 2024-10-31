@@ -8,6 +8,10 @@
   .btn {
     @apply rounded-sm px-10 py-5 text-xs tracking-widest;
   }
+
+  .btn-full-rounded {
+    @apply rounded-lg px-2 py-4 text-xs tracking-widest;
+  }
 }
 
 :root {
