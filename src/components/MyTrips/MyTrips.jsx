@@ -42,7 +42,7 @@ export default function MyTrips() {
   }
 
   return (
-    <div className="font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20">
+    <div className="font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20 px-4 md:px-10">
       <div className="max-w-[900px] flex flex-col gap-10">
         <h2 className="font-extrabold text-5xl">MY TRIPS</h2>
         {/* {isLoading && (
