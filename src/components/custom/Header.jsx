@@ -40,11 +40,15 @@ export default function Header() {
   };
 
   return (
-    <div className="p-3 shadow-sm flex justify-between items-center px-5 bg-[#F7FBFA]">
-      <img onClick={() => navigation("/")} src="/logo.svg" />
+    <div className="p-3 shadow-sm flex justify-between items-center px-2 md:px-5 bg-[#F7FBFA]">
+      <img
+        onClick={() => navigation("/")}
+        src="/logo.svg"
+        className="w-[35px] h-[35px]"
+      />
       <div>
         {user ? (
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2 md:gap-5">
             <div className="flex items-center justify-center">
               <Button
                 variant="outline"
@@ -63,9 +67,9 @@ export default function Header() {
               My Trips
             </Button>
             <Popover>
-              <PopoverTrigger className="rounded-full p-3">
+              <PopoverTrigger className="rounded-full p-2 md:p-3">
                 <img
-                  className="h-[35px] w-[35px] rounded-full"
+                  className="w-[25px] h-[25px] md:h-[35px] md:w-[35px] rounded-full"
                   src={parsedUser.picture}
                   alt=""
                 />

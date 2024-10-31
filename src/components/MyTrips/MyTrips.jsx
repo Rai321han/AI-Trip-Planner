@@ -42,31 +42,33 @@ export default function MyTrips() {
   }
 
   return (
-    <div className="min-h-[90vh] flex flex-col gap-10 mx-4 md:mx-8 lg:mx-10 my-10">
-      <h2 className="font-bold text-4xl ">My Trips</h2>
-      {/* {isLoading && (
+    <div className="font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20">
+      <div className="max-w-[900px] flex flex-col gap-10">
+        <h2 className="font-extrabold text-5xl">MY TRIPS</h2>
+        {/* {isLoading && (
         <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
       )} */}
-      {tripsData.length ? (
-        <div className="flex flex-row gap-5 flex-wrap items-stretch">
-          {tripsData.map((trip) => (
-            <TripCard key={trip.id} trip={trip} />
-          ))}
-        </div>
-      ) : isLoading ? (
-        <div className="w-full flex items-center justify-center">
-          <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
-        </div>
-      ) : (
-        <Empty />
-      )}
-      {isMore && (
-        <div className="flex items-center justify-center">
-          <Button variant="outline" onClick={loadMoreTrip}>
-            Load More
-          </Button>
-        </div>
-      )}
+        {tripsData.length ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 flex-wrap items-stretch">
+            {tripsData.map((trip) => (
+              <TripCard key={trip.id} trip={trip} />
+            ))}
+          </div>
+        ) : isLoading ? (
+          <div className="w-full flex items-center justify-center">
+            <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
+          </div>
+        ) : (
+          <Empty />
+        )}
+        {isMore && (
+          <div className="flex items-center justify-center">
+            <Button variant="outline" onClick={loadMoreTrip}>
+              Load More
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
