@@ -44,7 +44,7 @@ export default function CreateTrip() {
     onError: (error) => console.log(error),
   });
 
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoadin] = useState(false);
   const navigate = useNavigate();
   function handleInputChange(field, value) {
     if (field === "noOfDays" && value > 5) {
@@ -83,7 +83,7 @@ export default function CreateTrip() {
       return;
     }
 
-    setLoading(true);
+    setIsLoadin(true);
     const FINAL_PROMPT = AI_PROMPT.replace(
       "{location}",
       userInput.location.properties.state
@@ -94,13 +94,13 @@ export default function CreateTrip() {
       .replace("{totalDays}", userInput.noOfDays);
 
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-    setLoading(false);
+    setIsLoadin(false);
     console.log(userInput);
     SaveAITrip(result?.response?.text());
   };
 
   const SaveAITrip = async (TripData) => {
-    setLoading(true);
+    setIsLoadin(true);
     const docId = crypto.randomUUID();
     const user = JSON.parse(localStorage.getItem("user"));
     await setDoc(doc(db, "AITrips", docId), {
@@ -109,7 +109,7 @@ export default function CreateTrip() {
       userEmail: user?.email,
       id: docId,
     });
-    setLoading(false);
+    setIsLoadin(false);
     navigate("/view-trip/" + docId);
   };
 
@@ -152,6 +152,7 @@ export default function CreateTrip() {
             How many days are you planning your trip?
           </h2>
           <Input
+            disabled={isLoading}
             placeholder="Ex. 3"
             type="number"
             onChange={(e) => handleInputChange("noOfDays", e.target.value)}
@@ -168,7 +169,9 @@ export default function CreateTrip() {
               onClick={() => handleInputChange("budget", item.title)}
               key={item.id}
               className={`bg-[#F7FBFA] p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
-                userInput?.budget === item.title && "shadow-2xl border-black"
+                userInput?.budget === item.title
+                  ? "shadow-2xl border-black bg-white"
+                  : "bg-[#F7FBFA]"
               }`}
             >
               <h2 className="text-4xl">{item.icon}</h2>
@@ -189,9 +192,10 @@ export default function CreateTrip() {
             <div
               onClick={() => handleInputChange("traveller", item.people)}
               key={item.id}
-              className={`bg-[#F7FBFA] p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
-                userInput?.traveller === item.people &&
-                "shadow-2xl border-black "
+              className={` p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
+                userInput?.traveller === item.people
+                  ? "shadow-2xl border-black bg-white"
+                  : "bg-[#F7FBFA]"
               }`}
             >
               <h2 className="text-4xl">{item.icon}</h2>
@@ -203,8 +207,8 @@ export default function CreateTrip() {
       </div>
       <div className=" flex justify-end">
         {user ? (
-          <Button disabled={loading} onClick={OnGenerateTrip} className="btn">
-            {loading ? (
+          <Button disabled={isLoading} onClick={OnGenerateTrip} className="btn">
+            {isLoading ? (
               <>
                 Loading
                 <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
@@ -214,16 +218,7 @@ export default function CreateTrip() {
             )}
           </Button>
         ) : (
-          <SignInDialog login={login}>
-            {loading ? (
-              <>
-                Loading
-                <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
-              </>
-            ) : (
-              "GENERATE TRIP"
-            )}
-          </SignInDialog>
+          <SignInDialog login={login}>GENERATE TRIP</SignInDialog>
         )}
       </div>
     </div>

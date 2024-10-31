@@ -22,7 +22,7 @@ export default function SignInDialog({ login, children }) {
           onClick={() => navigation("/")}
         >
           <img src="/logo.svg" className="w-[35px] h-[35px]" />
-          <p className="text-xl font-Inter font-extrabold text-[#404530] hidden sm:block">
+          <p className="text-xl font-Inter font-extrabold text-[#404530] ">
             TripPlanner
           </p>
         </div>
