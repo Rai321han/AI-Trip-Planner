@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreateTrip from "./create-trip/index.jsx";
-
+// import "./App.css";
 import { Toaster } from "./components/ui/toaster.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ViewTrip from "./view-trip/[tripId]/index.jsx";

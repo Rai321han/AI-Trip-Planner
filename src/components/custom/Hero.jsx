@@ -3,19 +3,19 @@ import { Button } from "../ui/button";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col items-center mx-56 gap-9">
-      <h1 className="font-extrabold text-[45px]  text-center mt-16">
-        <span className="text-[#f56551] ">
+    <div className=" font-Inter flex flex-col items-center gap-9 mt-20 mx-10">
+      <h1 className="text-[45px]  text-center mt-16 font-extrabold">
+        <span className="text-lime-700 ">
           Discover Your Next Adventure with AI:&nbsp;
         </span>
         <br /> Personalized Itineraries at Your Fingertips
       </h1>
-      <p className="text-center text-xl text-gray-500">
+      <p className="text-center text-xl text-gray-700 max-w-[400px] md:max-w-[600px]">
         Your personal trip planner and travel curator, creating custom
         itineraries tailored to your interests and budget.
       </p>
       <Link to={"/create-trip"}>
-        <Button>Get Started, It&apos;s Free</Button>
+        <Button className="btn">GET STARTED</Button>
       </Link>
     </div>
   );

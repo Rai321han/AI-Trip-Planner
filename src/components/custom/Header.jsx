@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <div className="p-3 shadow-sm flex justify-between items-center px-5">
+    <div className="p-3 shadow-sm flex justify-between items-center px-5 bg-[#F7FBFA]">
       <img onClick={() => navigation("/")} src="/logo.svg" />
       <div>
         {user ? (

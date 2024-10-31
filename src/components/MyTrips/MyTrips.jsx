@@ -4,6 +4,7 @@ import TripCard from "./TripCard";
 import Empty from "./Empty";
 import { Button } from "../ui/button";
 import { initialTrips, nextTrips } from "@/lib/loadTrips";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function MyTrips() {
   const { user } = useContext(userContext);
@@ -12,20 +13,22 @@ export default function MyTrips() {
   const [lastTrip, setLastTrip] = useState(null);
   const [tripsData, setTripsData] = useState([]);
   const [isMore, setIsMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const settingTripsData = function (data) {
     setTripsData((prev) => [...prev, ...data]);
   };
 
   useEffect(() => {
-    if (tripsData.length) return;
+    // if (tripsData.length) return;
     initialTrips(
       parsedUserData.email,
       setLastTrip,
       settingTripsData,
-      setIsMore
+      setIsMore,
+      setIsLoading
     );
-  }, []);
+  }, [parsedUserData.email]);
 
   function loadMoreTrip() {
     nextTrips(
@@ -33,18 +36,26 @@ export default function MyTrips() {
       lastTrip,
       setLastTrip,
       settingTripsData,
-      setIsMore
+      setIsMore,
+      setIsLoading
     );
   }
 
   return (
     <div className="min-h-[90vh] flex flex-col gap-10 mx-4 md:mx-8 lg:mx-10 my-10">
       <h2 className="font-bold text-4xl ">My Trips</h2>
+      {/* {isLoading && (
+        <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
+      )} */}
       {tripsData.length ? (
         <div className="flex flex-row gap-5 flex-wrap items-stretch">
           {tripsData.map((trip) => (
             <TripCard key={trip.id} trip={trip} />
           ))}
+        </div>
+      ) : isLoading ? (
+        <div className="w-full flex items-center justify-center">
+          <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
         </div>
       ) : (
         <Empty />

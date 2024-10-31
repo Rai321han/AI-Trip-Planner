@@ -134,9 +134,11 @@ export default function CreateTrip() {
   };
 
   return (
-    <div className="sm:px-20 md:px-32 lg:px-56 xl:px-100 px-5 mt-10">
-      <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
-      <p className="mt-3 text-gray-500 text-xl max-w-[600px]">
+    <div className="sm:px-20 py-20 lg:px-56 xl:px-100 px-5 bg-[#F1F4F4]">
+      <h2 className="font-Inter font-extrabold text-5xl">
+        Tell us your travel preferences
+      </h2>
+      <p className="mt-5 text-gray-500 text-xl max-w-[600px]">
         Just provide some basic information, and trip planner will generate a
         customized itinerary based on your preferences.
       </p>
@@ -172,13 +174,13 @@ export default function CreateTrip() {
       {/* budget */}
       <div className="mb-20">
         <h2 className="text-xl my-3 font-medium">What is your budget?</h2>
-        <div className="grid grid-cols-3 gap-5 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
           {SelectBudgetOptions.map((item) => (
             <div
               onClick={() => handleInputChange("budget", item.title)}
               key={item.id}
-              className={` p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
-                userInput?.budget === item.title && "shadow-lg border-black"
+              className={`bg-[#F7FBFA] p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
+                userInput?.budget === item.title && "shadow-2xl border-black"
               }`}
             >
               <h2 className="text-4xl">{item.icon}</h2>
@@ -194,13 +196,14 @@ export default function CreateTrip() {
         <h2 className="text-xl my-3 font-medium">
           Who do plan to travel with on your next adventure?
         </h2>
-        <div className="grid grid-cols-3 gap-5 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
           {SelectTravelList.map((item) => (
             <div
               onClick={() => handleInputChange("traveller", item.people)}
               key={item.id}
-              className={` p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
-                userInput?.traveller === item.people && "shadow-lg border-black"
+              className={`bg-[#F7FBFA] p-4 border rounded-lg hover:shadow-lg cursor-pointer ${
+                userInput?.traveller === item.people &&
+                "shadow-2xl border-black "
               }`}
             >
               <h2 className="text-4xl">{item.icon}</h2>
@@ -210,15 +213,15 @@ export default function CreateTrip() {
           ))}
         </div>
       </div>
-      <div className="mb-20 flex justify-end">
-        <Button disabled={loading} onClick={OnGenerateTrip}>
+      <div className=" flex justify-end">
+        <Button disabled={loading} onClick={OnGenerateTrip} className="btn">
           {loading ? (
             <>
               Loading
               <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
             </>
           ) : (
-            "Generate Trip"
+            "GENERATE TRIP"
           )}
         </Button>
       </div>

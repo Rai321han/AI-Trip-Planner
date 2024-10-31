@@ -12,14 +12,16 @@ export async function initialTrips(
   email,
   setLastVisible,
   setVisibleTrips,
-  setIsMore
+  setIsMore,
+  setIsLoading
 ) {
   // Query the first page of docs
-
+  let limitValue = 5;
+  setIsLoading(true);
   const first = query(
     collection(db, "AITrips"),
     where("userEmail", "==", email),
-    limit(5)
+    limit(limitValue)
   );
   const documentSnapshots = await getDocs(first);
 
@@ -31,13 +33,14 @@ export async function initialTrips(
   documentSnapshots.forEach((doc) => {
     data.push(doc.data());
   });
-  if (data.length < 5) {
+  if (data.length < limitValue) {
     setIsMore(false);
   } else {
     data.pop();
     setIsMore(true);
   }
   setVisibleTrips(data);
+  setIsLoading(false);
 }
 
 export async function nextTrips(
@@ -45,13 +48,16 @@ export async function nextTrips(
   lastVisible,
   setLastVisible,
   setVisibleTrips,
-  setIsMore
+  setIsMore,
+  setIsLoading
 ) {
+  let limitValue = 5;
+  setIsLoading(true);
   const next = query(
     collection(db, "AITrips"),
     where("userEmail", "==", email),
     startAt(lastVisible),
-    limit(5)
+    limit(limitValue)
   );
 
   const documentSnapshots = await getDocs(next);
@@ -67,11 +73,12 @@ export async function nextTrips(
     data.push(doc.data());
   });
 
-  if (data.length < 5) {
+  if (data.length < limitValue) {
     setIsMore(false);
   } else {
     setIsMore(true);
     data.pop();
   }
   setVisibleTrips(data);
+  setIsLoading(false);
 }

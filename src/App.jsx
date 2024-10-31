@@ -1,9 +1,8 @@
 import Hero from "./components/custom/Hero";
-
-// import "./App.css";
+import "./App.css";
 function App() {
   return (
-    <div className="min-h-[100vh]">
+    <div className="min-h-[100vh] bg-[#DBFF73] flex justify-center">
       {/* Hero */}
       <Hero />
     </div>
