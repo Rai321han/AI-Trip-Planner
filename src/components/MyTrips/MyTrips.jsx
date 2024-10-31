@@ -1,33 +1,41 @@
 import { userContext } from "@/contexts/Usercontext";
 import { useContext, useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "@/services/firebaseConfig";
 import TripCard from "./TripCard";
 import Empty from "./Empty";
+import { Button } from "../ui/button";
+import { initialTrips, nextTrips } from "@/lib/loadTrips";
 
 export default function MyTrips() {
   const { user } = useContext(userContext);
 
   const parsedUserData = JSON.parse(user);
+  const [lastTrip, setLastTrip] = useState(null);
   const [tripsData, setTripsData] = useState([]);
+  const [isMore, setIsMore] = useState(false);
+
+  const settingTripsData = function (data) {
+    setTripsData((prev) => [...prev, ...data]);
+  };
 
   useEffect(() => {
-    const loadTrips = async function () {
-      const q = query(
-        collection(db, "AITrips"),
-        where("userEmail", "==", parsedUserData.email)
-      );
+    if (tripsData.length) return;
+    initialTrips(
+      parsedUserData.email,
+      setLastTrip,
+      settingTripsData,
+      setIsMore
+    );
+  }, []);
 
-      let data = [];
-
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        data.push(doc.data());
-      });
-      setTripsData(data);
-    };
-    loadTrips();
-  }, [parsedUserData.email]);
+  function loadMoreTrip() {
+    nextTrips(
+      parsedUserData.email,
+      lastTrip,
+      setLastTrip,
+      settingTripsData,
+      setIsMore
+    );
+  }
 
   return (
     <div className="min-h-[90vh] flex flex-col gap-10 mx-4 md:mx-8 lg:mx-10 my-10">
@@ -40,6 +48,13 @@ export default function MyTrips() {
         </div>
       ) : (
         <Empty />
+      )}
+      {isMore && (
+        <div className="flex items-center justify-center">
+          <Button variant="outline" onClick={loadMoreTrip}>
+            Load More
+          </Button>
+        </div>
       )}
     </div>
   );
