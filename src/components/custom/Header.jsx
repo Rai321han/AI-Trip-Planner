@@ -8,23 +8,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { userContext } from "@/contexts/Usercontext";
-import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
+// import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { getUserProfile } from "@/lib/getUserProfile";
+import SignInDialog from "../SignInDialog";
 
 export default function Header() {
   const navigation = useNavigate();
   const { user, setUser } = useContext(userContext);
-  const [openDialog, setOpenDialog] = useState(false);
+  // const [openDialog, setOpenDialog] = useState(false);
   const parsedUser = user ? JSON.parse(user) : null;
   const login = useGoogleLogin({
     onSuccess: (token) => handleLogin(token),
@@ -36,16 +29,20 @@ export default function Header() {
 
     const userInformation = JSON.stringify(data);
     setUser(userInformation);
-    setOpenDialog(false);
+    // setOpenDialog(false);
   };
 
   return (
     <div className="p-3 shadow-sm flex justify-between items-center px-2 md:px-5 bg-[#F7FBFA]">
-      <img
+      <div
+        className="flex flex-row gap-2 items-center cursor-pointer"
         onClick={() => navigation("/")}
-        src="/logo.svg"
-        className="w-[35px] h-[35px]"
-      />
+      >
+        <img src="/logo.svg" className="w-[35px] h-[35px]" />
+        <p className="text-xl font-Inter font-extrabold text-[#404530] hidden sm:block">
+          TripPlanner
+        </p>
+      </div>
       <div>
         {user ? (
           <div className="flex items-center gap-2 md:gap-5">
@@ -92,25 +89,11 @@ export default function Header() {
           </div>
         ) : (
           <>
-            <Button onClick={() => setOpenDialog(true)}>Sign in</Button>
-            <Dialog open={openDialog}>
-              <DialogContent>
-                <img src="/logo.svg" />
-                <DialogHeader>
-                  <DialogTitle>Sign In With Google.</DialogTitle>
-                  <DialogDescription>
-                    Sign in to the App with Google authentication securely.
-                    <Button
-                      onClick={login}
-                      className="w-full mt-5 flex flex-row gap-5 items-center"
-                    >
-                      <FcGoogle className="h-7 w-7" />
-                      Sign In With Google
-                    </Button>
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+            {/* <Button className="btn" onClick={() => setOpenDialog(true)}>
+              SIGN IN
+            </Button> */}
+
+            <SignInDialog login={login}>SIGN IN</SignInDialog>
           </>
         )}
       </div>

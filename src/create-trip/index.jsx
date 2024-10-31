@@ -14,23 +14,17 @@ import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { chatSession } from "@/services/AIModel";
-import { FcGoogle } from "react-icons/fc";
+
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { doc, setDoc } from "firebase/firestore";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-} from "@/components/ui/dialog";
 import { useGoogleLogin } from "@react-oauth/google";
-import { DialogTitle } from "@radix-ui/react-dialog";
 
 import { db } from "@/services/firebaseConfig";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { userContext } from "@/contexts/Usercontext";
 import { getUserProfile } from "@/lib/getUserProfile";
+import SignInDialog from "@/components/SignInDialog";
 
 //
 export default function CreateTrip() {
@@ -44,7 +38,6 @@ export default function CreateTrip() {
   const { user, setUser } = useContext(userContext);
   const isSignin = !user && searchParams.get("signin") === "true";
 
-  const [openDialog, setOpenDialog] = useState(isSignin);
   const { toast } = useToast();
   const login = useGoogleLogin({
     onSuccess: (codeResp) => GetUserProfile(codeResp),
@@ -77,10 +70,6 @@ export default function CreateTrip() {
   }
 
   const OnGenerateTrip = async function () {
-    if (!user) {
-      setOpenDialog(true);
-    }
-
     if (
       !userInput.budget ||
       !userInput.location ||
@@ -127,7 +116,6 @@ export default function CreateTrip() {
   const GetUserProfile = async function (tokenInfo) {
     const data = await getUserProfile(tokenInfo);
 
-    setOpenDialog(false);
     setUser(JSON.stringify(data));
     if (isSignin) navigate("/create-trip");
     OnGenerateTrip();
@@ -214,36 +202,30 @@ export default function CreateTrip() {
         </div>
       </div>
       <div className=" flex justify-end">
-        <Button disabled={loading} onClick={OnGenerateTrip} className="btn">
-          {loading ? (
-            <>
-              Loading
-              <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
-            </>
-          ) : (
-            "GENERATE TRIP"
-          )}
-        </Button>
+        {user ? (
+          <Button disabled={loading} onClick={OnGenerateTrip} className="btn">
+            {loading ? (
+              <>
+                Loading
+                <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
+              </>
+            ) : (
+              "GENERATE TRIP"
+            )}
+          </Button>
+        ) : (
+          <SignInDialog login={login}>
+            {loading ? (
+              <>
+                Loading
+                <AiOutlineLoading3Quarters className="ml-[10px] h-5 w-5 animate-spin" />
+              </>
+            ) : (
+              "GENERATE TRIP"
+            )}
+          </SignInDialog>
+        )}
       </div>
-
-      <Dialog open={openDialog}>
-        <DialogContent>
-          <img src="/logo.svg" />
-          <DialogHeader>
-            <DialogTitle>Sign In With Google.</DialogTitle>
-            <DialogDescription>
-              Sign in to the App with Google authentication securely.
-              <Button
-                onClick={login}
-                className="w-full mt-5 flex flex-row gap-5 items-center"
-              >
-                <FcGoogle className="h-7 w-7" />
-                Sign In With Google
-              </Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
