@@ -108,6 +108,7 @@ export default function CreateTrip() {
       tripData: JSON.parse(TripData),
       userEmail: user?.email,
       id: docId,
+      timeStamp: Date.now(),
     });
     setIsLoadin(false);
     navigate("/view-trip/" + docId);

@@ -7,6 +7,7 @@ import {
   getDocs,
   startAt,
   startAfter,
+  orderBy,
 } from "firebase/firestore";
 
 export async function initialTrips({
@@ -33,14 +34,16 @@ export async function initialTrips({
     Query = query(
       collection(db, "AITrips"),
       where("userEmail", "==", email),
+      orderBy("timeStamp", "desc"),
       startAfter(lastTrip),
       limit(limitValue)
     );
   } else {
-    limitValue = 3;
+    limitValue = 5;
     Query = query(
       collection(db, "AITrips"),
       where("userEmail", "==", email),
+      orderBy("timeStamp", "desc"),
       limit(limitValue)
     );
   }
@@ -67,8 +70,12 @@ export async function initialTrips({
   }
 
   if (isDeleted) {
-    setTripsData((prev) => prev.filter((trip) => trip.id !== deletedId));
-    setTripsData((prev) => [...prev, lastTrip.data()]);
+    setTripsData((prev) => {
+      // 1. Filter out the deleted trip
+      const updatedTrips = prev.filter((trip) => trip.id !== deletedId);
+      // 2. Add the lastTrip data
+      return [...updatedTrips, lastTrip.data()];
+    });
   } else setTripsData((prev) => [...prev, ...data]);
 
   setIsLoading(false);
@@ -82,11 +89,12 @@ export async function nextTrips({
   setIsMore,
   setIsLoading,
 }) {
-  let limitValue = 3;
+  let limitValue = 5;
   setIsLoading(true);
   const next = query(
     collection(db, "AITrips"),
     where("userEmail", "==", email),
+    orderBy("timeStamp", "desc"),
     startAt(lastTrip),
     limit(limitValue)
   );

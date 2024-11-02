@@ -30,12 +30,6 @@ export default function MyTrips() {
     if (isDeleted === false && !isFirstLoad.current) return;
     if (isFirstLoad.current) isFirstLoad.current = false;
 
-    // if (isDeleted && lastTrip === null) {
-    //   setTripsData((prev) => prev.filter((trip) => trip.id !== deletedId));
-    //   setDeletedId(null);
-    //   return;
-    // }
-
     initialTrips({
       email,
       setLastTrip,
@@ -65,9 +59,7 @@ export default function MyTrips() {
     <div className="font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20 px-4 md:px-10">
       <div className="max-w-[900px] flex flex-col gap-10">
         <h2 className="font-extrabold text-5xl">MY TRIPS</h2>
-        {/* {isLoading && (
-        <AiOutlineLoading3Quarters className="w-10 h-10 animate-spin " />
-      )} */}
+
         {tripsData.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 flex-wrap items-stretch">
             {tripsData.map((trip) => (
