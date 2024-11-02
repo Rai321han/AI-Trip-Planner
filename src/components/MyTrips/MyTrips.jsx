@@ -1,5 +1,5 @@
 import { userContext } from "@/contexts/Usercontext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TripCard from "./TripCard";
 import Empty from "./Empty";
 import { Button } from "../ui/button";
@@ -14,31 +14,51 @@ export default function MyTrips() {
   const [tripsData, setTripsData] = useState([]);
   const [isMore, setIsMore] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [deletedId, setDeletedId] = useState(null);
 
   const settingTripsData = function (data) {
-    setTripsData((prev) => [...prev, ...data]);
+    const updatedTrips = [...tripsData, ...data];
+    setTripsData(updatedTrips);
   };
 
+  const email = parsedUserData.email;
+
+  const isFirstLoad = useRef(true);
+
   useEffect(() => {
-    // if (tripsData.length) return;
-    initialTrips(
-      parsedUserData.email,
+    if (isDeleted === false && !isFirstLoad.current) return;
+    if (isFirstLoad.current) isFirstLoad.current = false;
+
+    // if (isDeleted && lastTrip === null) {
+    //   setTripsData((prev) => prev.filter((trip) => trip.id !== deletedId));
+    //   setDeletedId(null);
+    //   return;
+    // }
+
+    initialTrips({
+      email,
       setLastTrip,
-      settingTripsData,
+      deletedId,
+      setTripsData,
       setIsMore,
-      setIsLoading
-    );
-  }, [parsedUserData.email]);
+      isDeleted,
+      lastTrip,
+      setIsLoading,
+    });
+
+    setIsDeleted(false);
+  }, [isDeleted]);
 
   function loadMoreTrip() {
-    nextTrips(
-      parsedUserData.email,
+    nextTrips({
+      email,
       lastTrip,
       setLastTrip,
       settingTripsData,
       setIsMore,
-      setIsLoading
-    );
+      setIsLoading,
+    });
   }
 
   return (
@@ -51,7 +71,12 @@ export default function MyTrips() {
         {tripsData.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 flex-wrap items-stretch">
             {tripsData.map((trip) => (
-              <TripCard key={trip.id} trip={trip} />
+              <TripCard
+                key={trip.id}
+                trip={trip}
+                setDeletedId={setDeletedId}
+                setIsDeleted={setIsDeleted}
+              />
             ))}
           </div>
         ) : isLoading ? (
