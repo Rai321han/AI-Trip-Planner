@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default function Hero() {
   return (
-    <div className=" font-Inter flex flex-col items-center gap-9 py-10 mx-10 my-10">
+    <div className=" font-Inter flex flex-col items-center gap-9 my-24  mx-10 ">
       <h1 className="text-[30px] md:text-[45px] text-center  font-extrabold">
         <span className="text-lime-700 ">
           Discover Your Next Adventure with AI:&nbsp;
