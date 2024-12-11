@@ -18,7 +18,9 @@ export default function DailyPlan({ trip }) {
                   <h2 className="font-medium text-sm text-orange-600">
                     {place.best_time}
                   </h2>
-                  <PlaceCardItem place={place} />
+                  <div className="flex h-full">
+                    <PlaceCardItem place={place} />
+                  </div>
                 </div>
               ))}
             </div>

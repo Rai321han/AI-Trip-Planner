@@ -8,6 +8,9 @@ export default {
       Inter: ["Inter", "serif"],
     },
     extend: {
+      screens: {
+        xs: "350px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

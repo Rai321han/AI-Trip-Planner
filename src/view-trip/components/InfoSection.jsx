@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { IoIosSend } from "react-icons/io";
 
 /* eslint-disable react/prop-types */
 export default function InfoSection({ trip }) {
@@ -15,7 +13,7 @@ export default function InfoSection({ trip }) {
     <div>
       <img
         className="h-[300px] w-full object-cover rounded-xl"
-        src="/placeholder.png"
+        src="/placeholder.webp"
         alt=""
       />
       <div className="flex justify-between items-center">
@@ -29,9 +27,6 @@ export default function InfoSection({ trip }) {
             <Badge className="py-1 px-2">{noOfTravellers}</Badge>
           </div>
         </div>
-        <Button>
-          <IoIosSend />
-        </Button>
       </div>
     </div>
   );

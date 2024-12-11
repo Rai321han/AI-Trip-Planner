@@ -97,6 +97,7 @@ export default function CreateTrip() {
     setIsLoadin(false);
     console.log(userInput);
     SaveAITrip(result?.response?.text());
+    console.log(result?.response?.text());
   };
 
   const SaveAITrip = async (TripData) => {

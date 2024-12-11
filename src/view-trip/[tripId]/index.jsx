@@ -76,7 +76,7 @@ export default function ViewTrip() {
   };
   if (isError) return <Navigate to={"/"} />;
   return (
-    <div className="px-10 font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20">
+    <div className="px-5 md:px-10 font-Inter w-full  min-h-[90vh] flex flex-row justify-center gap-10 bg-[#F1F4F4] py-20">
       <div className="max-w-[900px] flex flex-col gap-10">
         {/* Information Section */}
         <InfoSection trip={trip} />
