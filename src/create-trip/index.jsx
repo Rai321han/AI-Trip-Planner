@@ -53,9 +53,7 @@ export default function CreateTrip() {
         variant: "destructive",
       });
       return;
-    }
-
-    if (value < 1) {
+    } else if (field === "noOfDays" && value < 1) {
       toast({
         title: "Travel days cannot be less than 1.",
         variant: "destructive",
@@ -139,13 +137,15 @@ export default function CreateTrip() {
           <h2 className="text-xl my-3 font-medium">
             What is your destination of choice?
           </h2>
-          <GeoapifyContext apiKey={import.meta.env.VITE_GEOAPIFY_API_KEY}>
-            <GeoapifyGeocoderAutocomplete
-              placeholder="Enter address here"
-              lang="en"
-              placeSelect={(value) => handleInputChange("location", value)}
-            />
-          </GeoapifyContext>
+          <div className="w-full bg-white rounded-md [&>div>input]:bg-white  [&>div>input]:placeholder-zinc-500 [&>div>input]:border-none [&>div]:p-1   [&>div>input]:p-2">
+            <GeoapifyContext apiKey={import.meta.env.VITE_GEOAPIFY_API_KEY}>
+              <GeoapifyGeocoderAutocomplete
+                placeholder="Enter address here"
+                lang="en"
+                placeSelect={(value) => handleInputChange("location", value)}
+              />
+            </GeoapifyContext>
+          </div>
         </div>
 
         {/* days */}
@@ -154,6 +154,7 @@ export default function CreateTrip() {
             How many days are you planning your trip?
           </h2>
           <Input
+            className="placeholder-slate-500 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
             disabled={isLoading}
             placeholder="Ex. 3"
             type="number"
