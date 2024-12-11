@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { Badge } from "@/components/ui/badge";
 /* eslint-disable react/prop-types */
 export default function PlaceCardItem({ place }) {
   return (
@@ -29,8 +29,13 @@ export default function PlaceCardItem({ place }) {
           </h2>
 
           <div className="flex flex-col gap-3 xs:flex-row justify-between flex-wrap text-sm w-full mt-auto">
-            <p className="max-w-[250px]">Ticket: {place.ticket_price}</p>
-            <p>⭐ Rating: {place.rating}</p>
+            <Badge className="max-w-[250px] py-1 px-2 bg-green-200 hover:bg-green-200 text-gray-700">
+              Ticket: {place.ticket_price}
+            </Badge>
+
+            <Badge className="bg-yellow-600 text-white hover:bg-yellow-600">
+              ⭐ Rating: {place.rating}
+            </Badge>
           </div>
         </div>
       </div>
