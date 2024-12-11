@@ -11,7 +11,7 @@ export default function PlaceCardItem({ place }) {
         place.address
       }
       target="_blank"
-      className=""
+      className="flex-auto"
     >
       <div className=" w-full bg-white text-black hover:scale-105 transition-all cursor-pointer border rounded-xl p-3 shadow-lg mt-2 flex flex-col sm:flex-row gap-5  h-full">
         {/* <img
