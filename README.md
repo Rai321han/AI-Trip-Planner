@@ -129,7 +129,7 @@ Don't forget to give the project a star! Thanks again!
 [Twitter-url]: https://x.com/RaihanU46038448
 [Gmail]: https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail&logoColor=white
 [Gmail-url]: mailto:uddinraihan797@gmail.com
-[Firebase]: (https://img.shields.io/badge/Firebase-orange?style=for-the-badge&logo=firebase&logoColor=orange&labelColor=black&color=black)
-[GeminiAI]: (https://img.shields.io/badge/GeminiAI-black?style=for-the-badge&logo=googlegemini&labelColor=black&color=black)
+[Firebase]: https://img.shields.io/badge/Firebase-orange?style=for-the-badge&logo=firebase&logoColor=orange&labelColor=black&color=black
+[GeminiAI]: https://img.shields.io/badge/GeminiAI-black?style=for-the-badge&logo=googlegemini&labelColor=black&color=black
 [Gemini-url]: https://ai.google.dev/
 [Firebase-url]: https://firebase.google.com
