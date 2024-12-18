@@ -39,7 +39,7 @@ Major frameworks/libraries used to built this site:
 - [![React.js]][React-url]
 - [![Tailwind]][Tailwind-url]
 - [![GeminiAI]][Gemini-url]
-  [![Firebase]][Firebase-url]
+- [![Firebase]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -116,7 +116,7 @@ Don't forget to give the project a star! Thanks again!
 [issues-url]: https://github.com/othneildrew/Best-README-Template/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[product-screenshot]: /aitripbanner.png
+[product-screenshot]: ./public/aitripbanner.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Tailwind]: https://img.shields.io/badge/Tailwind-CSS?style=for-the-badge&logo=tailwindcss&logoColor=%2306B6D4&color=%23222222
