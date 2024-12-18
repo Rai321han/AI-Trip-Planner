@@ -38,7 +38,7 @@ Major frameworks/libraries used to built this site:
 
 - [![React.js]][React-url]
 - [![Tailwind]][Tailwind-url]
-- [![GeminiAI]][Gemini-url]
+- [![Gemini]][Gemini-url]
 - [![Firebase]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -130,6 +130,6 @@ Don't forget to give the project a star! Thanks again!
 [Gmail]: https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail&logoColor=white
 [Gmail-url]: mailto:uddinraihan797@gmail.com
 [Firebase]: https://img.shields.io/badge/Firebase-orange?style=for-the-badge&logo=firebase&logoColor=orange&labelColor=black&color=black
-[GeminiAI]: https://img.shields.io/badge/GeminiAI-black?style=for-the-badge&logo=googlegemini&labelColor=black&color=black
+[Gemini]: https://img.shields.io/badge/Gemini-white?style=for-the-badge&logo=googlegemini&color=black
 [Gemini-url]: https://ai.google.dev/
 [Firebase-url]: https://firebase.google.com
