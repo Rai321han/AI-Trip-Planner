@@ -99,7 +99,7 @@ Don't forget to give the project a star! Thanks again!
 
 [![Linkedin]][Linkedin-url] [![Twitter]][Twitter-url] [![Gmail]][Gmail-url]
 
-[Project Link](https://github.com/Rai321han/multi-select-component)
+[Project Link](https://github.com/Rai321han/AI-Trip-Planner)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
